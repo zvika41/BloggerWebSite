@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Post>
+
+@{
+    ViewBag.Title = "Blog Website";
+    ViewBag.Description = "My journy has junior developer";
+    ViewBag.Tags = "c# .net junior unity developer";
+    var basePath = Context.Request.PathBase;
+}
+
+@*<h2>Home Page!</h2>
+
+    <img src="~/Content/Static/pexels-pixabay-261579.jpg" width="600" />*@
+<div class="main-img">
+    <span class="title">Developer Blog</span>
+</div>
+
+
+<div class="container">
+    @*<ul>
+            @foreach (Post post in Model)
+            {
+                <li>
+                    <a asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
+                        @post.Title
+                    </a>
+                </li>
+            }
+        </ul>*@
+    @foreach (Post post in Model)
+    {
+        var imagePath = $"{basePath}/Image/{post.Image}";
+        <a class="post" asp-action="Post" asp-route-id="@post.Id">
+            <img src="@imagePath" />
+            <span class="title">@post.Title</span>
+        </a>
+    }
+</div>

@@ -1,0 +1,33 @@
+﻿@model Post
+
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Description = Model.Description;
+    ViewBag.Keywords = $"{Model.Tags?.Replace(",", " ")} {Model.Category}";
+    var basePath = Context.Request.PathBase;
+}
+
+@*@if (!string.IsNullOrEmpty(Model.Image))
+    {
+        var imagePath = $"/Image/{Model.Image}";
+        <img src="@imagePath" width="300" />
+    }
+
+    <h2>@Model.Title</h2>
+
+    <p>@Model.Body</p>*@
+
+<div class="container">
+    <div class="post no-shadow">
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            var imagePath = $"{basePath}/Image/{Model.Image}";
+            <img src="@imagePath" width="300" />
+            <span class="title">@Model.Title</span>
+        }
+    </div>
+    <div class="post-body">
+        @Html.Raw(Model.Body)
+    </div>
+</div>
